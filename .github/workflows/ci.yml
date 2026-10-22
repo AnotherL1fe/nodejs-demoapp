@@ -33,6 +33,14 @@ jobs:
         run: npm run lint --if-present
         working-directory: src
 
+      - name: Start server
+        run: npm start &
+        working-directory: src
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000
+        working-directory: src
+
       - name: Run tests
         run: npm test --if-present
         working-directory: src
